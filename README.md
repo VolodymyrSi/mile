@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+## _For MileStep_
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Tech stack:
+- html / css / js
+- react with hooks (`useState`, `UseEffect`, `useRef`)
+- axios
+- version control with
+  - *github*
+- deployed with
+  - *github pages*
 
-## Available Scripts
 
-In the project directory, you can run:
+### Details:
 
-### `npm start`
+The web app consists of a single page and 3 components: `UserContainer`, `UserCard` and `FilterContainer`.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+|   | FilterContainer   | UserContainer  |  UserCard |
+|---|---|---|---|
+| Components include  | 2 `select` dropdown menues and a `submit` button  | 15 `UserCard`  items based on server data | profile description based on server data |
+| Data source  |  pre-selects options based on localStorage data | Axios async request | Receives data as props from `UserContainer` |
+| Shared State | userData |userData|userData|
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Tech side:
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Axios sends a request with a customizable API URL which depends on filters.
+    - It always requests **15 users**
+    - If **gender** filter is applied, the URL is modified to ask server for specific gender data
+    - If **nationality** filter is applied, the URL is modified to ask server for specific nationality data
+2. `UserContainer` component renders `UserCard` elements with `map` function. It displays the following:
+    - Image
+    - Name
+    - Email
+    - Date of birth (through function in `./src/components/utis/dateHelper`)
+    - Nationality **only if** filter is applied
+3. If user applies filters:
+    - the filter values are stored in `local storage` so they still apply upon refreshing the page
+    - `userData` state is uploaded according to selected values to display requested values
+    - `axios` request url is modified
