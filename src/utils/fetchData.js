@@ -2,23 +2,23 @@ import axios from 'axios';
 
 const url = 'https://randomuser.me/api/';
 const defalutUrl = `${url}?results=15&inc=gender,name,nat,dob,picture,email`;
-let gender = '';
-let nationality = '';
 
 export default function fetchRandomUserData(
-  LocalStorageGender,
-  LocalStorageNationality
+  localStorageGender,
+  localStorageNationality
 ) {
-  //   console.log(LocalStorageGender, LocalStorageNationality);
-  if (LocalStorageGender) {
-    gender = `&gender=${LocalStorageGender}`;
+  let gender = '';
+  let nationality = '';
+
+  if (localStorageGender) {
+    gender = `&gender=${localStorageGender}`;
   }
-  if (LocalStorageNationality) {
-    nationality = `&nat=${LocalStorageNationality}`;
+  if (localStorageNationality) {
+    nationality = `&nat=${localStorageNationality}`;
   }
-  console.log(defalutUrl + gender + nationality);
+
   return axios
-    .get(defalutUrl + gender + nationality)
+    .get(`${defalutUrl}${gender}${nationality}`)
     .then((response) => {
       return response.data.results;
     })

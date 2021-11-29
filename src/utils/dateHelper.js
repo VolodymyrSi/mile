@@ -1,5 +1,5 @@
-export const FormattedDate = (dateObj) => {
-  dateObj = new Date(dateObj);
+export const formattedDate = (date) => {
+  const dateObj = new Date(date);
   return dateObj
     .toLocaleDateString('en-GB', {
       year: 'numeric',
