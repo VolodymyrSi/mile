@@ -1,5 +1,8 @@
 ## _For MileStep_
 
+[This app lives here](https://volodymyrsi.github.io/simpleTwitter/)
+https://volodymyrsi.github.io/mile/
+
 ### Tech stack:
 - html / css / js
 - react with hooks (`useState`, `UseEffect`, `useRef`)
