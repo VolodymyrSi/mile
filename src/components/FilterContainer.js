@@ -53,29 +53,22 @@ export default function FilterContainer() {
     <fieldset className="formContainer">
       <legend>Filter options</legend>
       <label htmlFor="gender">Gender</label>
-      <select ref={inputGender}>
-        <option value="all" selected={selectedGender === 'all'}>
-          all
-        </option>
-        <option value="male" selected={selectedGender === 'male'}>
-          male
-        </option>
-        <option value="female" selected={selectedGender === 'female'}>
-          female
-        </option>
+      <select ref={inputGender} defaultValue={selectedGender}>
+        <option value="all">all</option>
+        <option value="male">male</option>
+        <option value="female">female</option>
       </select>
       <label htmlFor="nationality">Nationality</label>
-      <select name="nationality" multiple="multiple" size="5" ref={inputNation}>
+      <select
+        name="nationality"
+        multiple="multiple"
+        size="5"
+        defaultValue={localStorage.getItem('nationality')?.split(',')}
+        ref={inputNation}
+      >
         {nationalities.map((nationality) => {
           return (
-            <option
-              value={nationality}
-              key={nationality}
-              selected={localStorage
-                .getItem('nationality')
-                .split(',')
-                .includes(nationality)}
-            >
+            <option value={nationality} key={nationality}>
               {nationality}
             </option>
           );
