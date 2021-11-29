@@ -50,32 +50,50 @@ export default function FilterContainer() {
     });
   }
   return (
-    <div>
-      <fieldset>
-        <label htmlFor="gender">Gender</label>
-        <select id="gender" ref={inputGender}>
-          <option value="all">all</option>
-          <option value="male">male</option>
-          <option value="female">female</option>
-        </select>
-        <label htmlFor="nationality">Nationality</label>
-        <select
-          id="nationality"
-          name="nationality"
-          multiple="multiple"
-          size="5"
-          ref={inputNation}
+    <fieldset className="formContainer">
+      <legend>Filter options</legend>
+      <label htmlFor="gender">Gender</label>
+      <select id="gender" ref={inputGender}>
+        <option value="all" seleted={localStorage.getItem('gender') === 'all'}>
+          all
+        </option>
+        <option
+          value="male"
+          selected={localStorage.getItem('gender') === 'male'}
         >
-          {nationalities.map((n) => {
-            return (
-              <option value={n} key={n}>
-                {n}
-              </option>
-            );
-          })}
-        </select>
-        <input type="submit" value="Submit" onClick={handleChange} />
-      </fieldset>
-    </div>
+          male
+        </option>
+        <option
+          value="female"
+          selected={localStorage.getItem('gender') === 'female'}
+        >
+          female
+        </option>
+      </select>
+      <label htmlFor="nationality">Nationality</label>
+      <select
+        id="nationality"
+        name="nationality"
+        multiple="multiple"
+        size="5"
+        ref={inputNation}
+      >
+        {nationalities.map((n) => {
+          return (
+            <option
+              value={n}
+              key={n}
+              selected={localStorage
+                .getItem('nationality')
+                .split(',')
+                .includes(n)}
+            >
+              {n}
+            </option>
+          );
+        })}
+      </select>
+      <input type="submit" value="Submit" onClick={handleChange} />
+    </fieldset>
   );
 }
