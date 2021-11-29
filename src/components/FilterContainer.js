@@ -1,5 +1,8 @@
 import React from 'react';
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
+import { useContext } from 'react';
+import { Context } from '../App';
+import fetchRandomUserData from '../utils/fetchData';
 
 const nationalities = [
   'AU',
@@ -22,6 +25,8 @@ const nationalities = [
 ];
 
 export default function FilterContainer() {
+  const setUserData = useContext(Context);
+
   const inputGender = useRef(null);
   const inputNation = useRef(null);
 
@@ -37,6 +42,12 @@ export default function FilterContainer() {
     });
     localStorage.setItem('gender', inputGender.current.value);
     localStorage.setItem('nationality', selectedNationsValues.join(','));
+    fetchRandomUserData(
+      inputGender.current.value,
+      selectedNationsValues.join(',')
+    ).then((data) => {
+      setUserData(data);
+    });
   }
   return (
     <div>
@@ -52,6 +63,7 @@ export default function FilterContainer() {
           id="nationality"
           name="nationality"
           multiple="multiple"
+          size="5"
           ref={inputNation}
         >
           {nationalities.map((n) => {

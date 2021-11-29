@@ -16,7 +16,7 @@ export default function fetchRandomUserData(
   if (LocalStorageNationality) {
     nationality = `&nat=${LocalStorageNationality}`;
   }
-  console.log(defalutUrl + gender + nationality)
+  console.log(defalutUrl + gender + nationality);
   return axios
     .get(defalutUrl + gender + nationality)
     .then((response) => {
