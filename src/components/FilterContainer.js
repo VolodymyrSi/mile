@@ -27,8 +27,6 @@ export default function FilterContainer() {
 
   function handleChange(e) {
     e.preventDefault();
-    console.log('submitted');
-    // console.log(inputNation.current.options);
     const selectedNationsOptions = [...inputNation.current.options].filter(
       (opt) => {
         return opt.selected;
@@ -37,8 +35,6 @@ export default function FilterContainer() {
     const selectedNationsValues = selectedNationsOptions.map((option) => {
       return option.value;
     });
-    // console.log(selectedNations)
-    console.log(inputGender.current.value);
     localStorage.setItem('gender', inputGender.current.value);
     localStorage.setItem('nationality', selectedNationsValues.join(','));
   }

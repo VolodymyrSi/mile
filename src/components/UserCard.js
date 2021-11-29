@@ -2,7 +2,7 @@ import React from 'react';
 import { FormattedDate } from '../utils/dateHelper';
 
 export default function UserCard({ data }) {
-  const { gender, name, email, dob, picture } = data;
+  const { gender, name, email, dob, picture, nat } = data;
   return (
     <div>
       <img src={picture.medium} alt="userPic" />
@@ -10,6 +10,7 @@ export default function UserCard({ data }) {
       <p>{gender}</p>
       <p>{email}</p>
       <p>{FormattedDate(dob.date)}</p>
+      {localStorage.getItem('nationality') && <p>{nat}</p>}
     </div>
   );
 }
